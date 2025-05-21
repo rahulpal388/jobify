@@ -1,9 +1,12 @@
 import { AlignJustify } from "lucide-react";
 import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
+
 
 
 
 export function NavBar() {
+    const navigate = useNavigate();
     return <>
         <div className="flex px-10 py-3 justify-between items-center border border-b-[0.001px] border-gray-300 ">
             {/* logo */}
@@ -29,7 +32,7 @@ export function NavBar() {
                 </div>
             </div>
             <div>
-                <Button name="Login" onClick={() => { console.log("login btn clicked") }} className="bg-emerald-600 hover:bg-emerald-700 text-white  " />
+                <Button name="Login" onClick={() => { navigate("/login") }} className="bg-emerald-600 hover:bg-emerald-700 text-white  " />
             </div>
         </div>
     </>

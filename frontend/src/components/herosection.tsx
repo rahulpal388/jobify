@@ -8,7 +8,7 @@ export function HeroSection() {
         <div className="flex mt-12 md:px-12 px-4 xl:justify-evenly justify-between items-center ">
             <div className="flex flex-col justify-center items-center">
                 <div className="p-4">
-                    <h1 className=" text-3xl text-gray-900 font-bold text-center ">Your Everyday Services, Just a Tap Away</h1>
+                    <h1 className=" text-4xl  text-gray-900 font-bold text-center ">Your Everyday Services, Just a Tap Away</h1>
                 </div>
                 <div>
                     <p className="text-sm text-center max-md:px-12 max-md:text-lg ">One app for all your service needs — electricians, cleaners, plumbers, and more.</p>
