@@ -24,4 +24,10 @@
 - 3. Start the backend
 `` mvn exec:java "-Dexec.mainClass=com.jobify.backend.BackendApplication" ``
 
-
+# Start the frontend
+- 1. Navigate to backend folder
+` cd frontent`
+- 2. Install Dependencies
+` npm install `
+- 3. Start frontent
+` npm run dev `
