@@ -1,9 +1,10 @@
+import { AuthPage } from "../components/authPage";
 
 
 export function Register() {
     return <>
         <div>
-            Register user
+            <AuthPage type="register" onSubmit={(data) => { console.log(data) }} />
         </div>
     </>
 }

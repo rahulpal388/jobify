@@ -1,4 +1,5 @@
 import { Feature } from "../components/feature";
+import { Footer } from "../components/footer";
 import { HeroSection } from "../components/herosection";
 import { NavBar } from "../components/navbar";
 import { ServiceSection } from "../components/serviceSection";
@@ -13,10 +14,11 @@ export function LandingPage() {
         <div className="bg-gray-50">
             <NavBar />
             <HeroSection />
-            <WhySection />
             <ServiceSection />
+            <WhySection />
             <WorkingSection />
-            <Feature />
+            {/* <Feature /> */}
+            <Footer />
         </div>
     </>
 }
