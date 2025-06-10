@@ -14,14 +14,14 @@ import com.jobify.backend.utils.DbConnection;
 public class UserRegisterDAO implements RegisterUserInterface {
 
     public void registerUser(RegisterUserModel user) {
-        String sql = "INSERT INTO USER (id,username, email, password) " + "VALUES (?,?,?,?)";
+        String sql = "INSERT INTO user (id,username, email, password,user_type) " + "VALUES (?,?,?,?,?)";
 
         try (Connection conn = DbConnection.getDBConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
             pstmt.setInt(1, user.getId());
             pstmt.setString(2, user.getUsername());
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getPassword());
-
+            pstmt.setString(5, user.getUserType());
             pstmt.executeUpdate();
 
             pstmt.close();
@@ -31,7 +31,10 @@ public class UserRegisterDAO implements RegisterUserInterface {
             e.printStackTrace();
 
         }
-
     }
 
 }
+
+/*
+
+ */
