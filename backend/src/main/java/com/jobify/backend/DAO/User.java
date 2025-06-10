@@ -16,7 +16,8 @@ public class User {
 
         String sql = "SELECT * FROM USER WHERE email = ? ";
 
-        try (Connection conn = DbConnection.getDBConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+        try (Connection conn = DbConnection.getDBConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, user.getEmail());
 
@@ -31,11 +32,14 @@ public class User {
                 registerUser.setUserType(rs.getString("userType"));
 
                 return registerUser;
-
             }
 
         } catch (SQLException e) {
-            System.out.println("error while find the user ");
+            System.err.println("Error while finding the user: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception ex) {
+            System.err.println("Unexpected error: " + ex.getMessage());
+            ex.printStackTrace();
         }
         return null;
     }

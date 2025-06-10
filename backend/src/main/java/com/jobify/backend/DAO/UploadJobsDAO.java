@@ -23,12 +23,13 @@ public class UploadJobsDAO {
             pstmt.setInt(4, job.getSalary());
 
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
         } catch (SQLException e) {
+            System.err.println("SQL error during job upload: " + e.getMessage());
             e.printStackTrace();
+        } catch (Exception ex) {
+            System.err.println("Unexpected error during job upload: " + ex.getMessage());
+            ex.printStackTrace();
         }
-
     }
 
     public JobUploadModel getJob(Long id) {
@@ -45,7 +46,11 @@ public class UploadJobsDAO {
                 return job;
             }
         } catch (SQLException e) {
+            System.err.println("SQL error while fetching job: " + e.getMessage());
             e.printStackTrace();
+        } catch (Exception ex) {
+            System.err.println("Unexpected error while fetching job: " + ex.getMessage());
+            ex.printStackTrace();
         }
         return null;
     }
