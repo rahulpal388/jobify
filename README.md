@@ -31,3 +31,35 @@
 ` npm install `
 - 3. Start frontent
 ` npm run dev `
+
+## 🚀 Features
+
+### 👷 Worker-Side Features
+- 🔐 Worker registration with name, skill, location, and availability
+- 🧾 Manage profile and update availability status
+- 📅 View and respond to incoming job bookings
+- ⭐ Receive ratings and reviews from users
+
+### 👤 User-Side Features
+- 🔍 Search and filter workers by location, skill, and rating
+- 📘 View worker profiles and availability
+- 📲 Book a worker with job details and timing
+- 🔁 Track booking status (Pending, Confirmed, Completed)
+- ✍️ Rate and review workers after job completion
+
+### 🛡️ Admin Panel (Optional)
+- 🧑‍💼 Manage users and workers
+- 🚫 Handle reported issues or disputes
+- 📊 View platform analytics (total bookings, active workers, etc.)
+
+### 🔐 Security & Validation
+- ✅ JWT-based secure login for all users
+- 🛡️ Role-based access control (user, worker, admin)
+- ❌ Error messages and validations for all inputs and actions
+
+### 📱 UI/UX
+- ⚡ Fast, responsive interface using React.js and Tailwind CSS
+- 🌐 Clean and intuitive navigation for seamless experience
+- 🌙 Optional support for dark mode (planned)
+
+
