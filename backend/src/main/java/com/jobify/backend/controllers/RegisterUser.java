@@ -11,6 +11,10 @@ import com.jobify.backend.DAO.User;
 import com.jobify.backend.DAO.UserRegisterDAO;
 import com.jobify.backend.models.RegisterUserModel;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 @RestController
 public class RegisterUser {
     @Autowired
@@ -19,32 +23,48 @@ public class RegisterUser {
     private User userDAO;
 
     @PostMapping("/user/register")
-    public ResponseEntity<String> registerUsers(@RequestBody RegisterUserModel user) {
+    public ResponseEntity<Map<String, Object>> registerUsers(@RequestBody RegisterUserModel user) {
+        Map<String, Object> response = new HashMap<>();
         try {
             registerDAO.registerUser(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
+            // token
+            String accessToken = UUID.randomUUID().toString();
+            response.put("message", "User registered successfully");
+            response.put("accessToken", accessToken);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Server error: " + e.getMessage());
+            response.put("message", "Server error: " + e.getMessage());
+            response.put("accessToken", null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<String> loginUser(@RequestBody RegisterUserModel user) {
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody RegisterUserModel user) {
+        Map<String, Object> response = new HashMap<>();
         try {
             RegisterUserModel existingUser = userDAO.getUser(user);
             if (existingUser != null) {
                 if (!existingUser.getPassword().equals(user.getPassword())) {
-                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+                    response.put("message", "Invalid email or password");
+                    response.put("accessToken", null);
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
                 } else {
-                    return ResponseEntity.ok("Login successful for user: " + existingUser.getUsername());
+                    // token
+                    String accessToken = UUID.randomUUID().toString();
+                    response.put("message", "Login successful for user: " + existingUser.getUsername());
+                    response.put("accessToken", accessToken);
+                    return ResponseEntity.ok(response);
                 }
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+                response.put("message", "User not found");
+                response.put("accessToken", null);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Server error: " + e.getMessage());
+            response.put("message", "Server error: " + e.getMessage());
+            response.put("accessToken", null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 

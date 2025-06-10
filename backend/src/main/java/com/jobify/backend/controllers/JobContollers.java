@@ -22,7 +22,7 @@ public class JobContollers {
     public ResponseEntity<String> uploadJob(@RequestBody JobUploadModel job) {
         try {
             jobUploadDAO.uploadJob(job);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Job uploaded successfully");
+            return ResponseEntity.status(HttpStatus.OK).body("Job uploaded successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Server error: " + e.getMessage());
